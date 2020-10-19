@@ -1,0 +1,5 @@
+#!/bin/sh
+
+
+MY_OBFUSCATED_VARIABLE=Hello
+echo $MY_OSFUCATED_VARIABLE
