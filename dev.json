@@ -1,0 +1,35 @@
+{
+    "ip": "127.0.0.1",
+    "port": "80",
+    "kafka": false,
+    "domain": "locslhost",
+    "providers":
+      {
+        "tozny":
+          {
+            "api_endpoint": "https://tozny.api.windshare.wrstudio.cloud",
+            "credentials":
+              {
+                "grant_type": "password",
+                "username": "admin",
+                "password": "WINDRIVER_KEYCLOAK",
+                "client_id": "admin-cli"
+              },
+            "realmName": "wrai"
+          },
+        "db":
+          {
+            "host": "postgresql://postgres:tea@internal-a18b65bc5dbf04a9a98475e6a032af08-1728316706.us-east-2.elb.amazonaws.com",
+            "port": "5432",
+            "user": "postgres",
+            "password": "tea",
+            "database": "releasedb"
+          },
+        "harbor":
+          {
+            "credentials":
+              { "username": "admin", "password": "admin123456789" },
+            "api_endpoint": "https://system.registry.windshare.wrstudio.cloud/api/v2.0/"
+          }
+      }
+  }
