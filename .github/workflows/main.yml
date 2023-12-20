@@ -1,0 +1,32 @@
+name: Pass Outputs Example
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    outputs:
+      # Define output variables
+      myOutputVar: ${{ steps.step1.outputs.myOutputVar }}
+
+    steps:
+    - name: Step 1
+      id: step1
+      run: |
+        # Perform your actions here
+        # For example, set a variable as an output
+        echo "::set-output name=myOutputVar::This is the output value"
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Step 2
+      run: |
+        # Access the output variable from job1
+        echo "Output from job1: ${{ needs.job1.outputs.myOutputVar }}"
