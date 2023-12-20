@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      # Define output variables
       myOutputVar: ${{ steps.step1.outputs.myOutputVar }}
 
     steps:
@@ -19,7 +18,7 @@ jobs:
       run: |
         # Perform your actions here
         # For example, set a variable as an output
-        echo "::set-output name=myOutputVar::This is the output value"
+        echo "::set-output name=myOutputVar::Balu"
 
   job2:
     needs: job1
