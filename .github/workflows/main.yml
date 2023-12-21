@@ -16,8 +16,7 @@ jobs:
     - name: Step 1
       id: step1
       run: |
-        # Perform your actions here
-        # For example, set a variable as an output
+        # Setting Ouput
         echo "::set-output name=myOutputVar::Balu"
 
   job2:
