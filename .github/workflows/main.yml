@@ -11,9 +11,9 @@ jobs:
       - name: Run goodbye.sh
         run: ./goodbye.sh      
       - id: foo
+        name: Invoke the child pipeline
         uses: ./
         with:
           who-to-greet: 'Mona the Octocat'
-      - name: Invoke the child pipeline
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
