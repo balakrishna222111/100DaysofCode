@@ -16,4 +16,5 @@ jobs:
         with:
           who-to-greet: 'Balu'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        name: print random number
         shell: bash
