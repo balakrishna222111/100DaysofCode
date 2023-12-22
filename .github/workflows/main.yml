@@ -5,11 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Parent pipeline
     steps:
-      - uses: actions/checkout@v4
-      - name: Set execute permissions for goodbye.sh
-        run: chmod +x goodbye.sh
-      - name: Run goodbye.sh
-        run: ./goodbye.sh      
+      - uses: actions/checkout@v4     
       - id: foo
         name: Invoke the child pipeline
         uses: ./
