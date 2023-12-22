@@ -6,6 +6,11 @@ jobs:
     name: A job to say hello
     steps:
       - uses: actions/checkout@v4
+      - name: Set execute permissions for goodbye.sh
+        run: chmod +x goodbye.sh
+      - name: Run goodbye.sh
+        run: ./goodbye.sh      
+      
       - id: foo
         uses: ./
         with:
