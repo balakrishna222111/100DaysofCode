@@ -12,7 +12,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: cat printenv | grep RANDOM
+    - run: echo $RANDOM
       name: printenv
       shell: bash  
     - run: echo Hello ${{ inputs.who-to-greet }} random value is $RANDOM.
