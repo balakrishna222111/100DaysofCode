@@ -12,12 +12,12 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
+    - run: echo Hello ${{ inputs.who-to-greet }} random value is $RANDOM.
       shell: bash
     - id: random-number-generator
       run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
       shell: bash
-    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash
-    - run: goodbye.sh
-      shell: bash
+    # - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+    #   shell: bash
+    # - run: goodbye.sh
+    #   shell: bash
