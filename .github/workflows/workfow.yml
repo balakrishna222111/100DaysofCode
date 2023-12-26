@@ -1,6 +1,6 @@
 on:
   workflow_run:
-    workflows: workflow.yml
+    workflows: main.yml
     types:
       - completed
 
