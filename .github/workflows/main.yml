@@ -45,4 +45,9 @@ jobs:
               repo: context.repo.repo,
               labels: ['Red']  
             });
-            
+      - name: Trigger Other Workflow
+        uses: actions/workflow-dispatch@v2
+        with:
+          workflow: workflow.yml
+          input: 
+            config-path: true           
