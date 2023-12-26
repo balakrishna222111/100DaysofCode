@@ -6,11 +6,11 @@ jobs:
     name: Parent pipeline
     steps:
       - uses: actions/checkout@v4     
-      - id: foo
+      - id: childPipeline
         name: Invoke the child pipeline
         uses: ./
         with:
           who-to-greet: 'Balu'
-      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+      - run: echo random-number ${{ steps.childPipeline.outputs.random-number }}
         name: print random number
         shell: bash
