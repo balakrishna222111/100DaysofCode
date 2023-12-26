@@ -18,3 +18,19 @@ jobs:
       - run: echo random-number ${{ steps.childPipeline.outputs.random-number }}
         name: print random number
         shell: bash
+      - name: Print Issue Number
+        run: |
+          echo "GitHub Issue Number: ${{ github.event.issue.number }}"
+      - name: Post Comment
+        uses: actions/github-script@v8
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const randomNumber = "${{ steps.childPipeline.outputs.random-number }}";
+            const comment = `The random number is: ${randomNumber}`;
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
