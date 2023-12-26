@@ -23,4 +23,4 @@ jobs:
             });
             return comment.data.body;
       - name: Print Comment
-        run: echo "Fetched Comment: ${{ steps.fetchComment.outputs }}"
+        run: echo "Fetched Comment ${{ steps.fetchComment.outputs }}"
