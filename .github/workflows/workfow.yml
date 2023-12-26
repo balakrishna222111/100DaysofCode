@@ -1,6 +1,6 @@
 on:
   issue_comment:
-    types: [created]
+    types: [created, deleted, edited]
 
 jobs:
   fetch_comment_job:
