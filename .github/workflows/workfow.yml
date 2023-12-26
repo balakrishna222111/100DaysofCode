@@ -1,9 +1,5 @@
 on:
   workflow_call:
-    inputs:
-      config-path:
-        required: true
-        type: string
 jobs:
   fetch_comment_job:
     runs-on: ubuntu-latest
