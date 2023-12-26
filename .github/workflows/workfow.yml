@@ -1,8 +1,6 @@
 on:
-  workflow_run:
-    workflows: main.yml
-    types:
-      - completed
+  issue_comment:
+    types: [created]
 
 jobs:
   fetch_comment_job:
