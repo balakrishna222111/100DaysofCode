@@ -1,0 +1,16 @@
+name: Reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - id: random-number-generator
+      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
+      shell: bash
