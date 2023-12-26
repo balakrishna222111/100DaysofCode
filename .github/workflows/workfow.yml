@@ -1,8 +1,9 @@
 on:
-  issues:
-    types:
-      - labeled
-
+  workflow_dispatch:
+    inputs:
+      config-path:
+        required: true
+        type: string
 jobs:
   fetch_comment_job:
     runs-on: ubuntu-latest
