@@ -1,16 +1,26 @@
-name: Reusable workflow
-
 on:
-  workflow_call:
-    inputs:
-      config-path:
-        required: true
-        type: string
+  workflow_run:
+    workflows: ["Comment and Fetch Workflow"]
+    types:
+      - completed
 
 jobs:
-  triage:
+  fetch_comment_job:
     runs-on: ubuntu-latest
     steps:
-    - id: random-number-generator
-      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
-      shell: bash
+      - name: Fetch Comment
+        id: fetchComment
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const commentUrl = "${{ github.event.workflow_run.event.comment_url }}";
+            const commentId = commentUrl.split('/').pop();
+            const comment = github.issues.getComment({
+              comment_id: commentId,
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            return comment.data.body;
+      - name: Print Comment
+        run: echo "Fetched Comment: ${{ steps.fetchComment.outputs.return }}"
