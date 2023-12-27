@@ -1,7 +1,7 @@
 name: Workflow B
 on:
   workflow_run:
-    workflows: ["Workflow A"]
+    workflows: ["Parent pipeline"]
       types:
         - completed
 jobs:
