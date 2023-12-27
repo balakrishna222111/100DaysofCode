@@ -45,8 +45,23 @@ jobs:
               repo: context.repo.repo,
               labels: ['Red']  
             });
-      - name: Trigger Other Workflow
-        uses: actions/workflow-dispatch@v2
+  invoke_child_workflow:
+    runs-on: ubuntu-latest
+    needs: random_number_job
+    steps:
+      - name: Trigger Child Workflow
+        uses: actions/github-script@v4
         with:
-          workflow: workflow.yml
-       
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const childWorkflowInputs = {
+              config-path: 'path/to/config' # Adjust the path accordingly
+            };
+            const response = await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'workflow.yml', # Adjust the workflow name accordingly
+              ref: 'main', # Adjust the branch/ref accordingly
+              inputs: childWorkflowInputs
+            });
+            console.log(response);
