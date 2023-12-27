@@ -16,7 +16,7 @@ jobs:
         uses: ./
         with:
           who-to-greet: 'Balu'
-      - run: echo random-number ${{ steps.childPipeline.outputs.random-number }}
+      - run:  echo "Random number from child pipeline: ${{ needs.childPipeline.outputs.random-number }}"
         name: print random number
         shell: bash
       - name: Print Issue Number
