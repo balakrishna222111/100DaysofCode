@@ -22,9 +22,11 @@ jobs:
       - run:  echo "Random number from child pipeline ${{ needs.childPipeline.outputs.random-number }}"
         name: print random number
         shell: bash
-      - name: Print Issue Number
-        run: |
-          echo "GitHub Issue Number: ${{ github.event.issue.number }}"
+      - name: Set Environment Variable
+        run: echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
+      - run: echo "Issue number from child pipeline: $ISSUE_NUMBER"
+        name: print issue number
+        shell: bash
       - name: Post Comment
         uses: actions/github-script@v4
         with:
