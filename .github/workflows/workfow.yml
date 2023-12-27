@@ -19,7 +19,7 @@ jobs:
         run: echo "Fetched Comment ${{ steps.fetchComment.outputs }}"
       - name: Print Issue Number
         run: |
-          echo "GitHub Issue Number: ${{ github.event.issue.number }}"
+          echo "GitHub Issue Number ${{ github.event.issue.number }}"
       - name: Print Issue Number
         run: |
           echo "GitHub Issue Number $ISSUE_NUMBER"        
