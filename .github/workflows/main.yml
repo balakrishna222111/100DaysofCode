@@ -61,7 +61,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'workflow.yml', # Adjust the workflow name accordingly
-              ref: 'main', # Adjust the branch/ref accordingly
-              inputs: childWorkflowInputs
+              ref: 'main' # Adjust the branch/ref accordingly
             });
             console.log(response);
