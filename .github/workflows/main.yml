@@ -24,7 +24,7 @@ jobs:
         shell: bash
       - name: Set Environment Variable
         run: echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
-      - run: echo "Issue number from child pipeline: $ISSUE_NUMBER"
+      - run: echo "Issue number from child pipeline $ISSUE_NUMBER"
         name: print issue number
         shell: bash
       - name: Post Comment
