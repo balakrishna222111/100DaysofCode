@@ -22,4 +22,4 @@ jobs:
           echo "GitHub Issue Number: ${{ github.event.issue.number }}"
       - name: Print Issue Number
         run: |
-          echo "GitHub Issue Number: ${{ inputs.issue-number }}"          
+          echo "GitHub Issue Number: $ISSUE_NUMBER"        
