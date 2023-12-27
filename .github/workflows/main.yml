@@ -46,3 +46,6 @@ jobs:
               repo: context.repo.repo,
               labels: ['Red']  
             });
+      - run: echo "Issue number from child pipeline ${{ needs.childPipeline.outputs.issue-number }}"
+        name: print issue number
+        shell: bash
