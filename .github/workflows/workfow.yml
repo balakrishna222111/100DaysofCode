@@ -1,9 +1,11 @@
 name: Workflow B
+
 on:
   workflow_run:
     workflows: ["Parent pipeline"]
-      types:
-        - completed
+    types:
+      - completed
+
 jobs:
   fetch_comment_job:
     runs-on: ubuntu-latest
