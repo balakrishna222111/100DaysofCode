@@ -61,7 +61,7 @@ jobs:
           script: |
             const { context, github } = require('@actions/github');
 
-            async function run() {
+            (async () => {
               const { data: comments } = await github.rest.issues.listComments({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -74,6 +74,4 @@ jobs:
               } else {
                 console.log('No comments on this issue.');
               }
-            }
-
-            run();
+            })();
