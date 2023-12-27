@@ -1,3 +1,4 @@
+name: Parent pipeline
 on:
   issues:
     types:
