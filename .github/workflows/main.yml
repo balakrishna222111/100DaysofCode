@@ -54,3 +54,7 @@ jobs:
       - run: echo "Issue number from Parent pipeline $ISSUE_NUMBER"
         name: print issue number
         shell: bash
+      - name: View the github context
+        run: echo "$GITHUB_CONTEXT"
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}   
