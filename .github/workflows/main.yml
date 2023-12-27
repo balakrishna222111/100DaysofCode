@@ -9,6 +9,8 @@ jobs:
   random_number_job:
     runs-on: ubuntu-latest
     name: Parent pipeline
+    outputs:
+      issue-number: ${{ needs.childPipeline.outputs.issue-number }}    
     steps:
       - uses: actions/checkout@v4     
       - id: childPipeline
@@ -16,6 +18,7 @@ jobs:
         uses: ./
         with:
           who-to-greet: 'Balu'
+          issue-number: ${{ github.event.issue.number }}
       - run:  echo "Random number from child pipeline ${{ needs.childPipeline.outputs.random-number }}"
         name: print random number
         shell: bash
