@@ -60,6 +60,7 @@ jobs:
         with:
           issue-number: 2
           body-regex: '^.*The random number.*$'
+          nth: 1
       - run: |
           echo ${{ steps.fc.outputs.comment-id }}
           echo ${{ steps.fc.outputs.comment-body }}
