@@ -59,4 +59,4 @@ jobs:
         id: fc
         with:
           issue-number: 2
-          body-regex: '^.*random.*$'
+          body-regex: '^.*The random number.*$'
