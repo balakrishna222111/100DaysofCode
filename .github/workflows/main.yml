@@ -60,6 +60,6 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body-regex: '^.*The random number.*$'
-          nth: 1
+          nth: 0
       - run: |
-          echo ${{ steps.fc.outputs.comment-body }}
+          echo "find comment ${{ steps.fc.outputs.comment-body }} "
