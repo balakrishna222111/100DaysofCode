@@ -13,14 +13,14 @@ jobs:
       issue-number: ${{ needs.childPipeline.outputs.issue-number }}    
     steps:
       - uses: actions/checkout@v4     
-      - id: childPipeline
-        name: Invoke the child pipeline
-        uses: ./
-        with:
-          who-to-greet: 'Balu'
-      - run:  echo "Random number from child pipeline ${{ needs.childPipeline.outputs.random-number }}"
-        name: print random number
-        shell: bash
+      # - id: childPipeline
+      #   name: Invoke the child pipeline
+      #   uses: ./
+      #   with:
+      #     who-to-greet: 'Balu'
+      # - run:  echo "Random number from child pipeline ${{ needs.childPipeline.outputs.random-number }}"
+      #   name: print random number
+      #   shell: bash
       - name: Set Environment Variable
         run: echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
       - run: echo "Issue number from child pipeline $ISSUE_NUMBER"
