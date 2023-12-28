@@ -56,7 +56,7 @@ jobs:
         shell: bash
 
   find_comment_job:
-    needs: post-comment  # Make sure this job runs after the post-comment job
+    needs: post-comment 
     runs-on: ubuntu-latest
     steps:
       - name: Find Comment
