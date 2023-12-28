@@ -64,5 +64,6 @@ jobs:
         with:
           issue-number: 2
           body-includes: "The random number is"
+          nth: 0
       - run: |
           echo ${{ steps.fc.outputs.comment-body }}
