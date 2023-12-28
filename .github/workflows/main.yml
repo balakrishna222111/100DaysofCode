@@ -75,6 +75,8 @@ jobs:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
           issue_number: ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           # Extract the last comment details
           lastCommentId=$(echo "${{ steps.last-comment.outputs.data }}" | jq '.[-1].id')
