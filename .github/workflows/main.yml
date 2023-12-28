@@ -54,37 +54,14 @@ jobs:
       - run: echo "Issue number from Parent pipeline $ISSUE_NUMBER"
         name: print issue number
         shell: bash
-  test:
-    needs: "random_number_job"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Find Comment
-        uses: peter-evans/find-comment@v2
-        id: fc
-        with:
-          issue-number: 2
-      - run: |
-          echo ${{ steps.fc.outputs.comment-body }}
-      - name: Install jq
-        run: sudo apt-get install jq
-      - name: Get Last Comment
-        id: last-comment
-        uses: octokit/request-action@v2.x
-        with:
-          route: GET "/repos/balakrishna222111/100DaysofDevops/issues/2/comments"
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
-          issue_number: ${{ github.event.issue.number }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
-          # Extract the last comment details
-          lastCommentId=$(echo "${{ steps.last-comment.outputs.data }}" | jq '.[-1].id')
-          lastCommentBody=$(echo "${{ steps.last-comment.outputs.data }}" | jq -r '.[-1].body')
-          lastCommentAuthor=$(echo "${{ steps.last-comment.outputs.data }}" | jq -r '.[-1].user.login')
-          lastCommentCreatedAt=$(echo "${{ steps.last-comment.outputs.data }}" | jq -r '.[-1].created_at')
-          echo "Last Comment ID: $lastCommentId"
-          echo "Last Comment Body: $lastCommentBody"
-          echo "Last Comment Author: $lastCommentAuthor"
-          echo "Last Comment Created At: $lastCommentCreatedAt"
-
+  # test:
+  #   needs: "random_number_job"
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Find Comment
+  #       uses: peter-evans/find-comment@v2
+  #       id: fc
+  #       with:
+  #         issue-number: 2
+  #     - run: |
+  #         echo ${{ steps.fc.outputs.comment-body }}
