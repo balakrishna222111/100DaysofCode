@@ -18,7 +18,6 @@ jobs:
         uses: ./
         with:
           who-to-greet: 'Balu'
-          issue-number: ${{ github.event.issue.number }}
       - run:  echo "Random number from child pipeline ${{ needs.childPipeline.outputs.random-number }}"
         name: print random number
         shell: bash
