@@ -54,6 +54,11 @@ jobs:
       - run: echo "Issue number from Parent pipeline $ISSUE_NUMBER"
         name: print issue number
         shell: bash
+
+  find_comment_job:
+    needs: post-comment  # Make sure this job runs after the post-comment job
+    runs-on: ubuntu-latest
+    steps:
       - name: Find Comment
         uses: peter-evans/find-comment@v2
         id: fc
