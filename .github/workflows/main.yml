@@ -58,4 +58,11 @@ jobs:
     needs: "random_number_job"
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Issue number from Parent pipeline $ISSUE_NUMBER"
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: 2
+          body-includes: "The random number is"
+      - run: |
+          echo ${{ steps.fc.outputs.comment-body }}
