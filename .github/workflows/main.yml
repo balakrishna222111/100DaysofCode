@@ -58,11 +58,8 @@ jobs:
         uses: peter-evans/find-comment@v2
         id: fc
         with:
-          issue-number: 2
+          issue-number: ${{ github.event.issue.number }}
           body-regex: '^.*The random number.*$'
           nth: 1
       - run: |
-          echo ${{ steps.fc.outputs.comment-id }}
           echo ${{ steps.fc.outputs.comment-body }}
-          echo ${{ steps.fc.outputs.comment-author }}
-          echo ${{ steps.fc.outputs.comment-created-at }}
