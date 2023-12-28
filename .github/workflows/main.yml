@@ -71,7 +71,7 @@ jobs:
         id: last-comment
         uses: octokit/request-action@v2.x
         with:
-          route: GET /repos/:owner/:repo/issues/:issue_number/comments
+          route: GET "/repos/balakrishna222111/100DaysofDevops/issues/2/comments"
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
           issue_number: ${{ github.event.issue.number }}
