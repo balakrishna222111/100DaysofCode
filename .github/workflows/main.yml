@@ -1,56 +1,13 @@
 name: Parent pipeline
-# on:
-#   issues:
-#     types:
-#       - opened
-#       - edited
-
+on:
+  issues:
+    types:
+      - opened
+      - edited
 jobs:
-  random_number_job:
-    runs-on: ubuntu-latest
-    name: Parent pipeline
-    outputs:
-      issue-number: ${{ needs.childPipeline.outputs.issue-number }}    
-    steps:
-      - uses: actions/checkout@v4     
-      # - id: childPipeline
-      #   name: Invoke the child pipeline
-      #   uses: ./
-      #   with:
-      #     who-to-greet: 'Balu'
-      # - run:  echo "Random number from child pipeline ${{ needs.childPipeline.outputs.random-number }}"
-      #   name: print random number
-      #   shell: bash
-      - name: Set Environment Variable
-        run: echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
-      - run: echo "Issue number from child pipeline $ISSUE_NUMBER"
-        name: print issue number
-        shell: bash
-      - name: Post Comment
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const randomNumber = "${{ steps.childPipeline.outputs.random-number }}";
-            const comment = `The random number is: ${randomNumber}`;
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
-      - name: Add Label
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.issues.addLabels({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: ['Red']  
-            });
-      - run: echo "Issue number from Parent pipeline $ISSUE_NUMBER"
-        name: print issue number
-        shell: bash
+  build:
+    uses: balakrishna222111/100DaysofDevops/.github/workflows/workfow.yml@main
+    with:
+      input1: value1
+      input2: value2
 
