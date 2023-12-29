@@ -1,26 +1,20 @@
-name: Child Pipeline
-
-# on:
-#   workflow_run:
-#     workflows: ["Parent pipeline"]
-#     types:
-#       - completed
-
+name: Reusable Workflow
+on:
+  workflow_call:
+    inputs:
+      input1:
+        required: true
+        type: string
+      outputs:
+        output1:
+        type: string
 jobs:
-  fetch_comment_job:
+  build:
     runs-on: ubuntu-latest
-    outputs:
-      random-number: ${{ steps.generateRandomNumber.outputs.random-number }}
     steps:
-      - name: Generate Random Number
-        id: generateRandomNumber
-        run: echo "::set-output name=random-number::${{ github.run_id }}"
-      - name: Print Comment
-        run: echo "Fetched Comment ${{ steps.fetchComment.outputs }}"
-      - name: Print Issue Number
-        run: |
-          echo "GitHub Issue Number ${{ github.event.issue.number }}"
-      - name: Print Issue Number
-        run: |
-          echo "GitHub Issue Number $ISSUE_NUMBER"
-   
+      - uses: actions/checkout@v2
+      - name: Build code
+        run: npm run build
+      - name: Set output
+        id: set_output
+        run: echo "::set-output name=output1::value1"
