@@ -1,9 +1,9 @@
 name: Parent pipeline
-on:
-  issues:
-    types:
-      - opened
-      - edited
+# on:
+#   issues:
+#     types:
+#       - opened
+#       - edited
 
 jobs:
   random_number_job:
@@ -53,14 +53,4 @@ jobs:
       - run: echo "Issue number from Parent pipeline $ISSUE_NUMBER"
         name: print issue number
         shell: bash
-  # test:
-  #   needs: "random_number_job"
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Find Comment
-  #       uses: peter-evans/find-comment@v2
-  #       id: fc
-  #       with:
-  #         issue-number: 2
-  #     - run: |
-  #         echo ${{ steps.fc.outputs.comment-body }}
+
