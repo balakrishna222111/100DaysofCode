@@ -1,10 +1,10 @@
 name: Child Pipeline
 
-on:
-  workflow_run:
-    workflows: ["Parent pipeline"]
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows: ["Parent pipeline"]
+#     types:
+#       - completed
 
 jobs:
   fetch_comment_job:
