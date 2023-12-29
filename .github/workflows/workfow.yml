@@ -54,16 +54,4 @@ jobs:
             console.log("data is ",JSON.parse(data))
             return JSON.parse(data);
 
-    outputs:
-      property_one: ${{fromJSON(steps.return-parsed-json.outputs.result).prop_1}}
-      property_two: ${{fromJSON(steps.return-parsed-json.outputs.result).prop_2}}
 
-  log_context_values:
-    needs:
-      - download_context_artifact
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Log Context Values'
-        run: |
-          echo "${{ needs.download_context_artifact.outputs.property_one }}"
-          echo "${{ needs.download_context_artifact.outputs.property_two }}"
