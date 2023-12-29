@@ -8,6 +8,5 @@ jobs:
   build:
     uses: balakrishna222111/100DaysofDevops/.github/workflows/workfow.yml@main
     with:
-      input1: value1
-      input2: value2
-
+      input1: Balu
+      input2: T
