@@ -5,9 +5,9 @@ on:
       input1:
         required: true
         type: string
-      outputs:
-        output1:
-          type: string
+    outputs:
+      output1:
+        type: string
 jobs:
   build:
     runs-on: ubuntu-latest
