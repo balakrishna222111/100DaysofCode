@@ -51,7 +51,7 @@ jobs:
           script: |
             let fs = require('fs');
             let data = fs.readFileSync('./context.json');
-            console.log("data is ",data)
+            console.log("data is ",JSON.parae(data))
             return JSON.parse(data);
 
     outputs:
