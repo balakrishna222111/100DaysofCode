@@ -5,9 +5,9 @@ on:
       input1:
         required: true
         type: string
-    outputs:
-      output1:
-        type: string
+    # outputs:
+    #   output1:
+    #     type: string
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +15,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build code
         run: "echo workflow"
-      - name: Set output
-        id: set_output
-        run: echo "::set-output name=output1::value1"
+      # - name: Set output
+      #   id: set_output
+      #   run: echo "::set-output name=output1::value1"
