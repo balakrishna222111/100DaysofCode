@@ -12,7 +12,7 @@ jobs:
         run: |
             printf '{ 
               "prop_1": "Balu",  
-              "prop_2": T
+              "prop_2": "T"
             }' >> context.json
       - uses: actions/upload-artifact@v3
         with:
