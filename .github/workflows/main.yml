@@ -5,16 +5,16 @@ on:
     branches: [ "main" ]
 
 jobs:
-  some_job:  
-    runs-on: ubuntu-latest
-    steps:
-      - name: Some Step 
-        run: echo "Hello!"
+#   some_job:  
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Some Step 
+#         run: echo "Hello!"
 
-  job_producing_data:  
+  upload_Artifact:  
     runs-on: ubuntu-latest
     steps:
-      - name: Some Step 
+      - name: create Json
         run: |
             printf '{ 
               "prop_1": "Some value",  
