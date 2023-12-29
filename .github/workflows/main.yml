@@ -1,11 +1,12 @@
-name: Parent pipeline
+name: Workflow A
+
 on:
-  issues:
-    types:
-      - opened
-      - edited
+  push:
+    branches: [ "main" ]
+
 jobs:
-  build:
-    uses: balakrishna222111/100DaysofDevops/.github/workflows/workfow.yml@main
-    with:
-      input1: Balu
+  some_job:  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Some Step 
+        run: echo "Hello!"
