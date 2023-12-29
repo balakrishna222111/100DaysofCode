@@ -5,8 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  some_job:  
+  A:  
     runs-on: ubuntu-latest
     steps:
-      - name: Some Step 
+      - name: Print Hello
         run: echo "Hello!"
