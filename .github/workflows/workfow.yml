@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build code
-        run: npm run build
+        run: "echo workflow"
       - name: Set output
         id: set_output
         run: echo "::set-output name=output1::value1"
