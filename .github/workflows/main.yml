@@ -18,3 +18,8 @@ jobs:
         with:
           name: context.json
           path: ./
+      - name: Set Environment Variable
+        run: echo "BALU=catchme" >> $GITHUB_ENV
+  
+      - name: Use Environment Variable
+        run: echo "Variable Value: $BALU"
