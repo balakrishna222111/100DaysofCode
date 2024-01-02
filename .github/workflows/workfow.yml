@@ -1,37 +1,62 @@
-name: Workflow A
+name: Workflow B
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["Workflow A"]
+    types:
+      - completed
 
-jobs:
-  upload_Artifact:  
+jobs:  
+  run_on_workflow_a_success:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    outputs:
-      step_output: ${{ steps.upload_Artifact.outputs.variable_value }}
     steps:
-      - name: create Json
-        run: |
-            printf '{ 
-              "prop_1": "Balu",  
-              "prop_2": "updated"
-            }' >> context.json
-      - uses: actions/upload-artifact@v3
+      - name: Run on workflow A success
+        run: echo "Workflow A completes successfully"
+
+  download_context_artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Download artifact'
+        uses: actions/github-script@v6
         with:
-          name: context.json
-          path: ./
-      - name: Set Environment Variable
-        run: echo "BALU=catchme" >> $GITHUB_ENV
-      - name: Set Output Variable
-        id: set-output
-        run: echo "::set-output name=variable_value::catchme"
-  
-  fetch_variable:
-    needs: upload_Artifact
-    runs-on: ubuntu-latest
-    outputs:
-      variable_value: ${{ needs.upload_Artifact.outputs.variable_value }}
-  
-    steps:
-    - name: Use Environment Variable
-      run: echo "Variable Value ${{ needs.upload_Artifact.outputs.step_output }}"
+          script: |
+            let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               run_id: context.payload.workflow_run.id,
+            });
+            
+            let matchArtifact = allArtifacts.data.artifacts.filter((artifact) => {
+              return artifact.name == "context.json"
+            })[0];
+            
+            let download = await github.rest.actions.downloadArtifact({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               artifact_id: matchArtifact.id,
+               archive_format: 'zip',
+            });
+            
+            let fs = require('fs');
+            fs.writeFileSync(`${process.env.GITHUB_WORKSPACE}/context.zip`, Buffer.from(download.data));
+            
+      - name: 'Unzip artifact'
+        run: unzip context.zip
+
+      - name: 'Return Parsed JSON'
+        uses: actions/github-script@v6
+        id: return-parsed-json
+        with:
+          script: |
+            let fs = require('fs');
+            let data = fs.readFileSync('./context.json');
+            console.log("data is ",JSON.parse(data))
+            return JSON.parse(data);
+
+      - name: 'Set Output Variable in Workflow B'
+        id: set-output-workflow-B
+        run: echo "::set-output name=variable_value_workflow_B::my_value"
+
+# You can use the output variable in subsequent steps or jobs in Workflow B
+# by referencing it with ${{ needs.download_context_artifact.outputs.variable_value_workflow_B }}
