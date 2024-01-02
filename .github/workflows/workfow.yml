@@ -23,9 +23,9 @@ jobs:
       - name: Run on workflow A success
         run: echo "Workflow A completes successfully"
 
-  some_other_job:
-    needs: download_context_artifact
-    runs-on: ubuntu-latest
-    steps:
-      - name: Use Output Variable in Workflow B
-        run: echo "Output Variable variable_value_workflow_B: ${{ needs.download_context_artifact.outputs.variable_value_workflow_B }}"
+  # some_other_job:
+  #   needs: download_context_artifact
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Use Output Variable in Workflow B
+  #       run: echo "Output Variable variable_value_workflow_B: ${{ needs.download_context_artifact.outputs.variable_value_workflow_B }}"
