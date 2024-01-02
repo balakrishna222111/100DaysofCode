@@ -26,4 +26,5 @@ jobs:
       - name: Use Environment Variable
         run: echo "Environment Variable BALU $BALU"
       - name: Use Output Variable
-        run: echo "Output Variable variable_value ${{ needs.upload_Artifact.outputs.variable_value }}"
+        run: echo "Output Variable variable_value ${{ needs.upload_Artifact.outputs.variable_value }}" "{{ needs.download_context_artifact.outputs.variable_value }}"
+      
