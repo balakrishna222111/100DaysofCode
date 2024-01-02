@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: 'Set Output Variable in Workflow B'
         id: set-output-workflow-B
-        run: echo "::set-output name=variable_value_workflow_B::my_value"
+        run: echo "::set-output name=variable_value_workflow_B::fromworkflowb"
 
   run_on_workflow_a_success:
     needs: download_context_artifact
