@@ -7,26 +7,14 @@ on:
 jobs:
   upload_Artifact:  
     runs-on: ubuntu-latest
-    outputs:
-      step_output: ${{ steps.upload_Artifact.outputs.variable_value }}
     steps:
-      - name: Set Output Variable
-        id: set-output
-        run: echo "::set-output name=variable_value::catchme"
-
-  fetch_variable:
-    needs: upload_Artifact
-    runs-on: ubuntu-latest
-    outputs:
-      variable_value: ${{ needs.upload_Artifact.outputs.variable_value }}
-  
-    steps:
-      - name: Use Output Variable
-        run: echo "Output Variable variable_value ${{ needs.upload_Artifact.outputs.variable_value }}"
-
-  use_variable_workflow_B:
-    needs: fetch_variable  # Corrected dependency name
-    runs-on: ubuntu-latest
-    steps:
-      - name: Use Output Variable from Workflow B
-        run: echo "Output Variable variable_value_workflow_B ${{ needs.fetch_variable.outputs.variable_value }}"
+      - name: create Json
+        run: |
+            printf '{ 
+              "prop_1": "Balu",  
+              "prop_2": "updated"
+            }' >> context.json
+      - uses: actions/upload-artifact@v3
+        with:
+          name: context.json
+          path: ./
