@@ -10,23 +10,20 @@ jobs:
     outputs:
       step_output: ${{ steps.upload_Artifact.outputs.variable_value }}
     steps:
-      - name: create Json
-        run: |
-            printf '{ 
-              "prop_1": "Balu",  
-              "prop_2": "updated"
-            }' >> context.json
-      - uses: actions/upload-artifact@v3
-        with:
-          name: context.json
-          path: ./
       - name: Set Environment Variable
         run: echo "BALU=catchme" >> $GITHUB_ENV
-  
+      - name: Set Output Variable
+        id: set-output
+        run: echo "::set-output name=variable_value::catchme"
+
   fetch_variable:
-      needs: upload_Artifact
-      runs-on: ubuntu-latest
+    needs: upload_Artifact
+    runs-on: ubuntu-latest
+    outputs:
+      variable_value: ${{ needs.upload_Artifact.outputs.variable_value }}
   
-      steps:
+    steps:
       - name: Use Environment Variable
-        run: echo "Variable Value ${{ needs.upload_Artifact.outputs.step_output }}"
+        run: echo "Environment Variable BALU: $BALU"
+      - name: Use Output Variable
+        run: echo "Output Variable variable_value: ${{ needs.upload_Artifact.outputs.variable_value }}"
