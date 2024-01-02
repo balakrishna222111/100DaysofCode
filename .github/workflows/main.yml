@@ -10,8 +10,6 @@ jobs:
     outputs:
       step_output: ${{ steps.upload_Artifact.outputs.variable_value }}
     steps:
-      - name: Set Environment Variable
-        run: echo "BALU=catchme" >> $GITHUB_ENV
       - name: Set Output Variable
         id: set-output
         run: echo "::set-output name=variable_value::catchme"
@@ -23,8 +21,6 @@ jobs:
       variable_value: ${{ needs.upload_Artifact.outputs.variable_value }}
   
     steps:
-      - name: Use Environment Variable
-        run: echo "Environment Variable BALU: $BALU"
       - name: Use Output Variable
         run: echo "Output Variable variable_value ${{ needs.upload_Artifact.outputs.variable_value }}"
 
