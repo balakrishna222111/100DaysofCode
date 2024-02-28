@@ -15,9 +15,9 @@ Before running the bot, make sure you have the following:
 
 1. Clone the repository:
 
-git clone <repository_url>
-cd <repository_name>
+git clone https://github.com/balakrishna222111/100DaysofDevops.git
 
+cd 100DaysofDevops/CookingScheduler-telegram-python-bot
 
 2. Install the required packages:
 
