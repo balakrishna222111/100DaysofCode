@@ -35,7 +35,7 @@ def find_element(df, column_name, value_to_find):
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    fileName = "/Users/balu/Downloads/Daily Shifts.xlsx"
+    fileName = "./Daily Shifts.xlsx"
     require_cols = [0,2, 4]
     dataframe =  pd.read_excel(fileName,usecols = require_cols)
     Week=dataframe.columns[0]
