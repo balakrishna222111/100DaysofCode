@@ -1,6 +1,6 @@
-module "example_nsg" {
+module "tf_nsg" {
   source              = "../nsg"
-  nsg_name            = "example-nsg"
+  nsg_name            = "tf-nsg"
   resource_group_name = "test"
   location = "East US"
 
@@ -13,8 +13,8 @@ security_rules = [
       "Tcp",
       "*",
       "22",
-      "*",
-      "*",
+      "192.168.0.1/32",
+      "192.168.0.1/32",
     ],
     [
       "allow_http",
@@ -27,6 +27,5 @@ security_rules = [
       "*",
       "*",
     ]
-    # Add more security rules as needed
   ]
 }
