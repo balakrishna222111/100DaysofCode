@@ -24,10 +24,6 @@ variable "security_rules" {
  default     = []
 }
 
-As per your req i made the changes to pass source port ,dest add as an option values  using security_rules as list(list (string)) datatype
-
-Whiile doing these i think if we can update the datatype of security_rules using list(masp(string)) whihc will be more conviewent andd
-better understanding the in readable format while passing the security rules parameters in while calling the nsg in the child module from the root module
 
 variable "tags" {
   description = "Tags to apply to the NSG"
