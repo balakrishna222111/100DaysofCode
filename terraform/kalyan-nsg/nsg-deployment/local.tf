@@ -81,46 +81,6 @@ locals {
       destination_port_range = "443"
     },
     {
-      name                   = "AllowHTTPOutbound"
-      priority               = "1120"
-      direction              = "Outbound"
-      access                 = "Allow"
-      protocol               = "Tcp"
-      destination_port_range = "80"
-    },
-    {
-      name                   = "AllowSSHOutbound"
-      priority               = "1130"
-      direction              = "Outbound"
-      access                 = "Allow"
-      protocol               = "Tcp"
-      destination_port_range = "22"
-    },
-    {
-      name                   = "AllowAzureMachineLearningOutbound"
-      priority               = "300"
-      direction              = "Outbound"
-      access                 = "Allow"
-      protocol               = "Tcp"
-      destination_port_range = "44224"
-    },
-    {
-      name                   = "AllowCognitiveServicesFrontendOutbound"
-      priority               = "400"
-      direction              = "Outbound"
-      access                 = "Allow"
-      protocol               = "Tcp"
-      destination_port_range = "443"
-    },
-    {
-      name                   = "AllowCognitiveServiceManagementOutbound"
-      priority               = "500"
-      direction              = "Outbound"
-      access                 = "Allow"
-      protocol               = "Tcp"
-      destination_port_range = "443"
-    },
-    {
       name                   = "allowmanagment_m_eus_inbound"
       priority               = "1110"
       direction              = "Inbound"
@@ -129,13 +89,54 @@ locals {
       destination_port_range = "*"
     },
     {
-      name                   = "AllowMicrosoftDefenderForEndpointOutbound"
-      priority               = "690"
-      direction              = "Outbound"
+      name                   = "AzureLoadBalancer"
+      priority               = "2030"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+    },
+    {
+      name                   = "MicrosoftDefenderForEndpoint"
+      priority               = "2070"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+    },
+    {
+      name                   = "CognitiveServiceManagment"
+      priority               = "2060"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+    },
+    {
+      name                   = "AzureMachineLearning"
+      priority               = "2040"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+    },
+    {
+      name                   = "CognitiveServiceFrontEnd"
+      priority               = "2050"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "*"
+    },
+    {
+      name                   = "AzureCogntiveSearch"
+      priority               = "2010"
+      direction              = "Inbound"
       access                 = "Allow"
       protocol               = "Tcp"
       destination_port_range = "*"
     }
+
   ]
 
   tags = {
