@@ -12,7 +12,7 @@ resource "azurerm_network_security_group" "nsg" {
       access                     = security_rule.value["access"]
       protocol                   = security_rule.value["protocol"]
       source_port_range          = try(security_rule.value["source_port_range"], var.default_source_port_range)
-      destination_port_range     = security_rule.value["destination_port_range"]
+      destination_port_range     = try(security_rule.value["destination_port_range"],var.default_destination_port_range)
       source_address_prefix      = try(security_rule.value["source_address_prefix"], var.default_source_address_prefix)
       destination_address_prefix = try(security_rule.value["destination_address_prefix"], var.default_destination_address_prefix)
     }

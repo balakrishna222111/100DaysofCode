@@ -37,6 +37,13 @@ variable "default_source_port_range" {
   description = "Default value of source port range"
 }
 
+variable "default_destination_port_range" {
+  default = "*"
+  type = string
+  description = "Default value of source port range"
+}
+
+
 variable "default_source_address_prefix" {
   default = "*"
   type = string
