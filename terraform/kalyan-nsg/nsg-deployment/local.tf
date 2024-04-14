@@ -1,40 +1,80 @@
 locals {
   nsg_security_rules = [
     {
-      name                   = "AllowHTTP"
-      priority               = "100"
+      name                   = "allow_tfcagent_c_cus_inbound_vm"
+      priority               = "1010"
       direction              = "Inbound"
       access                 = "Allow"
       protocol               = "Tcp"
       destination_port_range = "80"
     },
     {
-      name                   = "AllowSSH"
-      priority               = "200"
+      name                   = "allow_adoagent_c_cus_inbound_vm"
+      priority               = "1020"
       direction              = "Inbound"
       access                 = "Allow"
       protocol               = "Tcp"
       destination_port_range = "22"
     },
     {
-      name                   = "AllowAzureMachineLearning"
-      priority               = "300"
+      name                   = "allow_core_vm_c_cus_inbound_vm"
+      priority               = "1030"
       direction              = "Inbound"
       access                 = "Allow"
       protocol               = "Tcp"
       destination_port_range = "44224"
     },
     {
-      name                   = "AllowCognitiveServicesFrontend"
-      priority               = "400"
+      name                   = "allow_managment_m_cus_inbound"
+      priority               = "1100"
       direction              = "Inbound"
       access                 = "Allow"
       protocol               = "Tcp"
       destination_port_range = "443"
     },
     {
-      name                   = "AllowCognitiveServiceManagement"
-      priority               = "500"
+      name                   = "allow_managment_m_eus2_inbound"
+      priority               = "1120"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "443"
+    },
+    {
+      name                   = "allow_managment_m_wus3_inbound"
+      priority               = "1130"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "443"
+    },
+    {
+      name                   = "allow_identity_i_cus_inbound_vm"
+      priority               = "1200"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "443"
+    },
+    {
+      name                   = "allow_identity_i_eus_inbound_vm"
+      priority               = "1210"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "443"
+    },
+    {
+      name                   = "allow_identity_i_eus2_inbound_vm"
+      priority               = "1220"
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      destination_port_range = "443"
+    },
+    {
+      name                   = "allow_identity_i_wus3_inbound_vm"
+      priority               = "1230"
       direction              = "Inbound"
       access                 = "Allow"
       protocol               = "Tcp"
@@ -42,7 +82,7 @@ locals {
     },
     {
       name                   = "AllowHTTPOutbound"
-      priority               = "100"
+      priority               = "1120"
       direction              = "Outbound"
       access                 = "Allow"
       protocol               = "Tcp"
@@ -50,7 +90,7 @@ locals {
     },
     {
       name                   = "AllowSSHOutbound"
-      priority               = "200"
+      priority               = "1130"
       direction              = "Outbound"
       access                 = "Allow"
       protocol               = "Tcp"
@@ -81,8 +121,8 @@ locals {
       destination_port_range = "443"
     },
     {
-      name                   = "AllowMicrosoftDefenderForEndpoint"
-      priority               = "700"
+      name                   = "allowmanagment_m_eus_inbound"
+      priority               = "1110"
       direction              = "Inbound"
       access                 = "Allow"
       protocol               = "Tcp"
@@ -90,7 +130,7 @@ locals {
     },
     {
       name                   = "AllowMicrosoftDefenderForEndpointOutbound"
-      priority               = "700"
+      priority               = "690"
       direction              = "Outbound"
       access                 = "Allow"
       protocol               = "Tcp"
