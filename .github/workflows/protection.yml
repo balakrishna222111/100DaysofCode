@@ -32,4 +32,4 @@ jobs:
         run: |
           gh api --method PUT /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection \
             -F enforce_admins=true \
-            -F required_pull_request_reviews='{"required_approving_review_count":2}'
+            -F "required_pull_request_reviews[required_approving_review_count]=2"
