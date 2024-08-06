@@ -31,5 +31,7 @@ jobs:
       - name: Apply branch protection rules
         run: |
           gh api --method PUT /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection \
+            -F required_status_checks='{"strict":true,"contexts":["ci-build"]}' \
             -F enforce_admins=true \
-            -F required_pull_request_reviews='{"required_approving_review_count":2}' 
+            -F required_pull_request_reviews='{"required_approving_review_count":2}' \
+            -F restrictions='{"users":["user1"],"teams":["team1"]}'
