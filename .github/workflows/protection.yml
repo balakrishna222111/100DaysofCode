@@ -1,0 +1,24 @@
+name: Set Branch Protection
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  protect-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up GitHub CLI
+        uses: cli/cli-action@v1
+        with:
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Apply branch protection rules
+        run: |
+          gh api --method PUT /repos/${{ github.repository }}/branches/main/protection \
+            -F required_status_checks='{"strict":true,"contexts":["ci-build"]}' \
+            -F enforce_admins=true \
+            -F required_pull_request_reviews='{"required_approving_review_count":2}' \
+            -F restrictions='{"users":["user1"],"teams":["team1"]}'
