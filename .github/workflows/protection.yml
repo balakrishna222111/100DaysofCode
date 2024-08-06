@@ -8,7 +8,7 @@ on:
 jobs:
   protect-branch:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/users/bala' # Ensure this job only runs for the users/bala branch
+    if: github.ref == 'refs/heads/main' # Ensure this job only runs for the users/bala branch
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
