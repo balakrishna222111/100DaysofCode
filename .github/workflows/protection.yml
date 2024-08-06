@@ -8,13 +8,13 @@ on:
 jobs:
   protect-branch:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' # Ensure this job only runs for the users/bala branch
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up GitHub CLI
         run: |
+          sudo apt-get update
           sudo apt-get install gh -y
 
       - name: Authenticate GitHub CLI
