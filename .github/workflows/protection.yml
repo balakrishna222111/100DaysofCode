@@ -21,10 +21,10 @@ jobs:
       - name: Authenticate GitHub CLI
         run: |
           echo "${{ secrets.PAT }}" | gh auth login --with-token
-          gh api \
-          -H "Accept: application/vnd.github+json" \
-          -H "X-GitHub-Api-Version: 2022-11-28" \
-          /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection 
+          # gh api \
+          # -H "Accept: application/vnd.github+json" \
+          # -H "X-GitHub-Api-Version: 2022-11-28" \
+          # /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection 
 
       - name: Apply branch protection rules
         run: |
