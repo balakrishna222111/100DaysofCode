@@ -1,11 +1,14 @@
 name: Set Branch Protection
 
 on:
-  workflow_dispatch: 
+  push:
+    branches:
+      - main
 
 jobs:
   protect-branch:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/users/bala' # Ensure this job only runs for the users/bala branch
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -14,12 +17,13 @@ jobs:
         run: |
           sudo apt-get install gh -y
 
-      - name: Apply branch protection rules
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Authenticate GitHub CLI
         run: |
-          gh auth login --with-token <<< "${GITHUB_TOKEN}"
-          gh api --method PUT /repos/${{ github.repository }}/branches/main/protection \
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Apply branch protection rules
+        run: |
+          gh api --method PUT /repos/${{ github.repository }}/branches/users/bala/protection \
             -F required_status_checks='{"strict":true,"contexts":["ci-build"]}' \
             -F enforce_admins=true \
             -F required_pull_request_reviews='{"required_approving_review_count":2}' \
