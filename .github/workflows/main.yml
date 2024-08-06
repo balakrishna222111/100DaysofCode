@@ -2,7 +2,7 @@ name: Workflow A
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "test" ]
 
 jobs:
   upload_Artifact:  
