@@ -19,11 +19,11 @@ jobs:
 
       - name: Authenticate GitHub CLI
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+          echo "${{ secrets.PAT }}" | gh auth login --with-token
 
       - name: Apply branch protection rules
         run: |
-          gh api --method PUT /repos/${{ github.repository }}/branches/users/bala/protection \
+          gh api --method PUT /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection \
             -F required_status_checks='{"strict":true,"contexts":["ci-build"]}' \
             -F enforce_admins=true \
             -F required_pull_request_reviews='{"required_approving_review_count":2}' \
