@@ -11,13 +11,15 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up GitHub CLI
-        uses: cli/cli-action@v1
-        with:
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          sudo apt-get install gh -y
 
       - name: Apply branch protection rules
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh api --method PUT /repos/${{ github.repository }}/branches/users/bala/protection \
+          gh auth login --with-token <<< "${GITHUB_TOKEN}"
+          gh api --method PUT /repos/${{ github.repository }}/branches/main/protection \
             -F required_status_checks='{"strict":true,"contexts":["ci-build"]}' \
             -F enforce_admins=true \
             -F required_pull_request_reviews='{"required_approving_review_count":2}' \
