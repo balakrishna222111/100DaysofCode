@@ -19,19 +19,19 @@ jobs:
 
       - name: Authenticate GitHub CLI
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+          echo "${{ secrets.PAT }}" | gh auth login --with-token
 
       - name: List protection
         run: |
           gh api \
           -H "Accept: application/vnd.github+json" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection 
+          /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection
 
       - name: Apply branch protection rules
         run: |
           gh api --method PUT /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection \
             -F required_status_checks='{"strict":true,"contexts":["ci-build"]}' \
             -F enforce_admins=true \
-            -F required_pull_request_reviews='{"required_approving_review_count":2}' \
-            -F restrictions='{"users":["user1"],"teams":["team1"]}'
+            -F required_pull_request_reviews='{"required_approving_review_count":2}' 
+            #-F restrictions='{"users":["user1"],"teams":["team1"]}'
