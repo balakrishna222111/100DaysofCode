@@ -1,28 +1,4 @@
-name: Set Branch Protection
 
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  protect-branch:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up GitHub CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install gh -y
-
-      - name: Authenticate GitHub CLI
-        run: |
-          echo "${{ secrets.PAT }}" | gh auth login --with-token
-
-      - name: Apply branch protection rules
-        run: |
 name: Set Branch Protection
 
 on:
