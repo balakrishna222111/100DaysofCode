@@ -21,6 +21,10 @@ jobs:
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
+      - name: List branches
+        run: |
+          gh repo view --json branches --jq '.branches[]' # Lists all branches
+
       - name: Apply branch protection rules
         run: |
           gh api --method PUT /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection \
