@@ -24,7 +24,4 @@ jobs:
       - name: Apply branch protection rules
         run: |
           gh api --method PUT /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection \
-            -F enforce_admins=true \
-            -F required_pull_request_reviews='{"required_approving_review_count":2}' \
-            -F required_status_checks='{"strict":false,"contexts":[]}' \
-            -F restrictions='{"users":[],"teams":[]}'
+          -F "required_status_checks[strict]=true" -f "required_status_checks[contexts[]]=continuous-integration/travis-ci" -F "enforce_admins=true" -f "dismissal_restrictions[users[]]=octocat" -f "dismissal_restrictions[teams[]]=justice-league" -F "required_pull_request_reviews[dismiss_stale_reviews]=true" -F "required_pull_request_reviews[require_code_owner_reviews]=true" -F "required_pull_request_reviews[required_approving_review_count]=2" -F "required_pull_request_reviews[require_last_push_approval]=true" -f "bypass_pull_request_allowances[users[]]=octocat" -f "bypass_pull_request_allowances[teams[]]=justice-league" -f "restrictions[users[]]=octocat" -f "restrictions[teams[]]=justice-league" -f "restrictions[apps[]]=super-ci" -F "required_linear_history=true" -F "allow_force_pushes=true" -F "allow_deletions=true" -F "block_creations=true" -F "required_conversation_resolution=true" -F "lock_branch=true" -F "allow_fork_syncing=true"
