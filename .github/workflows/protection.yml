@@ -28,13 +28,10 @@ jobs:
 
       - name: Apply branch protection rules
         run: |
-          gh api --method PUT /repos/balakrishna222111/100DaysofDevops/branches/users/bala/protection \
+          gh api --method PUT /repos/balakrishna222111/100DaysofDevops/branches/main/protection \
             -F enforce_admins=true \
+            -F "required_pull_request_reviews={\"dismiss_stale_reviews\":true,\"require_code_owner_reviews\":true,\"required_approving_review_count\":2,\"require_last_push_approval\":true}" \
             -F required_status_checks='{"strict":true,"contexts":["ci-build"]}' \
-            -F dismissal_restrictions='{"users":["octocat"],"teams":["justice-league"]}' \
-            -F required_pull_request_reviews='{"dismiss_stale_reviews":true,"require_code_owner_reviews":true,"required_approving_review_count":2,"require_last_push_approval":true}' \
-            -F bypass_pull_request_allowances='{"users":["octocat"],"teams":["justice-league"]}' \
-            -F restrictions='{"users":["octocat"],"teams":["justice-league"],"apps":["super-ci"]}' \
             -F required_linear_history=true \
             -F allow_force_pushes=false \
             -F allow_deletions=false \
