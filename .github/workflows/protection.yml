@@ -28,6 +28,7 @@ jobs:
 
       - name: Apply branch protection rules
         run: |
+          gh api --method PUT /repos/balakrishna222111/100DaysofDevops/branches/main/protection \
             -H "Accept: application/vnd.github+json" \
             -F enforce_admins=true \
             -F required_pull_request_reviews='{"required_approving_review_count":2}' \
